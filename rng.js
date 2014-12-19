@@ -5,6 +5,11 @@
     g.crypto || g.msCrypto || require('crypto')
   )
   module.exports = function(size) {
+      throw new Error(
+        'secure random number generation not supported by this browser\n'+
+        'use chrome, FireFox or Internet Explorer 11'
+      )
+
     // Modern Browsers
     if(_crypto.getRandomValues) {
       var bytes = new Buffer(size); //in browserify, this is an extended Uint8Array

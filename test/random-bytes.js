@@ -7,7 +7,6 @@ for (var idx in randomBytesFunctions) {
   var randomBytesName = randomBytesFunctions[idx];
   var randomBytes = crypto[randomBytesName]
   test('get error message', function (t) {
-  
     try {
       var b = randomBytes(10)
       t.ok(Buffer.isBuffer(b))
@@ -18,6 +17,14 @@ for (var idx in randomBytesFunctions) {
     }
   
   })
+
+  try {
+    randomBytes(10)
+  }
+  catch (err) {
+      // If randomBytes is not supported in this browser the previous test should pass, but the following won't.
+    continue;
+  }
   
   test(randomBytesName, function (t) {
       t.plan(5);
@@ -32,7 +39,6 @@ for (var idx in randomBytesFunctions) {
   });
   
   test(randomBytesName + ' seem random', function (t) {
-  
     var L = 1000
     var b = randomBytes(L)
   
@@ -54,7 +60,6 @@ for (var idx in randomBytesFunctions) {
     t.ok(mean > expected - smean)
   
     t.end()
-  
   })
 }
 
