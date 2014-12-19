@@ -13,7 +13,7 @@ for (var idx in randomBytesFunctions) {
       t.ok(Buffer.isBuffer(b))
       t.end()
     } catch (err) {
-      t.ok(/not supported/.test(err.message), '"not supported"  is in error message')
+      t.ok(/not supported/.test(err.message) || /not yet implemented/.test(err.message), '"not supported" or "not yet implemented" is in error message')
       t.end()
     }
   
